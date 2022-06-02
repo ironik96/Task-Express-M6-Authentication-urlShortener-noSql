@@ -3,11 +3,13 @@ const express = require("express");
 const passport = require("passport");
 const urlRoutes = require("./api/urls/urls.routes");
 const userRoutes = require("./api/users/users.routes");
+const localStrategy = require("./middleware/passport");
 const app = express();
 
 connectDb();
 app.use(express.json());
 app.use(passport.initialize());
+passport.use(localStrategy);
 
 app.use("/urls", urlRoutes);
 app.use(userRoutes);

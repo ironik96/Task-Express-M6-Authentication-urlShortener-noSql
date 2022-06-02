@@ -5,6 +5,8 @@ require("dotenv").config();
 
 exports.signin = async (req, res) => {
   try {
+    const token = generateToken(req.user);
+    res.status(201).json(token);
   } catch (err) {
     res.status(500).json("Server Error");
   }
